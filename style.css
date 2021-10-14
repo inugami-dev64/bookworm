@@ -1,0 +1,114 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+
+main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Large button styling */
+.big_button {
+    height: 30px;
+    width: 75px;
+    border: none;
+    margin: 5px;
+}
+
+
+.big_button:hover {
+    background-color: gray;
+    cursor: pointer;
+}
+
+
+/* Icon styling */
+.big_icon {
+    width: 40px;
+    height: 40px;
+}
+
+
+/* Header styling */
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid black;
+    height: 80px;
+    width: auto;
+    background-color: #C89057;
+}
+
+
+header .hdr_element {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+header .hdr_element img {
+    margin-left: 10px;
+}
+
+header .hdr_element img:hover {
+    cursor: pointer;
+}
+
+
+/* User icon */
+#usr {
+    background-image: url(res/usr.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+
+
+#usr:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 40%);
+}
+
+
+/* Search page styling */
+.search_page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-grow: 1;
+    background-image: url(res/book_bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.search_page form input[type="text"] {
+    width: 33vw;
+    height: 30px;
+}
+
+
+/* Login prompt styling */
+#login_prompt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+    width: 33%;
+    height: 33%;
+    background-color: white;
+    border: 1px solid black;
+}

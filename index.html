@@ -1,10 +1,35 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Buy and sell used books at Bookworm</html>
+        <title>Buy and sell used books at Bookworm</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="main.js"></script>
     </head>
 
     <body>
-        <h1>Hello world!</h1>
+        <!-- All the header contents that are used in header -->
+        <header>
+            <div class="hdr_element">
+                <img alt="LOGO" src="res/logo.svg">
+            </div>
+            <div class="hdr_element">
+                <button class="big_button" type="button">About Us</button>
+                <button class="big_button" type="button">Browse</button>
+                <button class="big_button" type="button">Sell</button>
+                <div class="big_icon" id="usr" onclick="prompt_login()"></div>
+            </div>
+        </header>
+
+        <!-- Main search page div -->
+        <div class="search_page">
+            <form>
+                <input type="text" placeholder="Search for books"</input>
+                <button type="button" class="big_button">Search</button>
+            </form>
+        </div>
+
+        <!-- Login prompt that is only shown when requested explicitly --> 
+        <!--<div id="login_prompt">-->
+        <!--</div>-->
     </body>
 </html>
