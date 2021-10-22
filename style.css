@@ -1,6 +1,4 @@
 body {
-    display: flex;
-    flex-direction: column;
     margin: 0;
     width: 100%;
     height: 100vh;
@@ -10,17 +8,31 @@ body {
 main {
     width: 100%;
     height: 100vh;
+    min-height: 500px;
     display: flex;
     flex-direction: column;
+    overflow: auto;
+}
+
+
+p, b {
+    color: white;
+}
+
+
+h1 {
+    user-select: none;
 }
 
 
 /* Large button styling */
 .big_button {
     height: 30px;
-    width: 75px;
+    width: 80px;
     border: none;
     margin: 5px;
+    border: none;
+    border-radius: 8px;
 }
 
 
@@ -39,30 +51,106 @@ main {
 
 /* Header styling */
 header {
+    top: 0;
+    left: 0;
+    position: sticky;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     border-bottom: 1px solid black;
     height: 80px;
-    width: auto;
-    background-color: #C89057;
+    width: 100%;
+    background-color: #c89057;
+    overflow: hidden;
 }
 
 
 header .hdr_element {
     display: flex;
-    width: 50%;
+    width: 350px;
+    margin-right: 20px;
     justify-content: center;
     align-items: center;
 }
 
 
 header .hdr_element img {
+    height: 60px;
+    width: 150px;
     margin-left: 10px;
 }
 
+
 header .hdr_element img:hover {
     cursor: pointer;
+}
+
+
+/* Footer styling */
+footer {
+    display: flex;
+    overflow: hidden;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #c89057;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    border-top: 1px solid black;
+}
+
+
+footer .contact_info {
+    margin-left: 20px;
+}
+
+
+footer .contact_info p, b{
+    margin: 2px;
+}
+
+
+footer .social_media {
+    display: flex;
+    flex-direction: row;
+    margin-right: 50px;
+}
+
+
+footer .social_media a {
+    margin: 5px;
+}
+
+
+/* User profile section styling */
+#user_profile {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    height: 95%;
+    max-width: 600px;
+    max-height: 600px;
+    border: 1px solid black;
+    background-color: white;
+    text-align: center;
+    overflow: auto;
+}
+
+
+#user_profile table {
+    margin-top: 50px;
+    width: 80%;
+    border-bottom: 1px solid black;
+}
+
+
+#user_profile td, th{
+    width: 33%;
 }
 
 
@@ -82,7 +170,7 @@ header .hdr_element img:hover {
 
 
 /* Search page styling */
-.search_page {
+.content {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -92,23 +180,148 @@ header .hdr_element img:hover {
     background-image: url(res/book_bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: auto;
 }
 
 
-.search_page form input[type="text"] {
+.content form input[type="text"] {
     width: 33vw;
     height: 30px;
+    border-radius: 8px;
+    border: none;
+}
+
+
+/* General error message styling */
+.err_msg {
+    color: red;
+    font-size: 18px;
+    margin: 10px;
 }
 
 
 /* Login prompt styling */
 #login_prompt {
     position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0 auto;
-    width: 33%;
-    height: 33%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    display: none;
+    width: 350px;
+    height: 500px;
     background-color: white;
     border: 1px solid black;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+
+#login_prompt h1 {
+    margin-top: 40px;
+    color: black;
+}
+
+
+#login_prompt a {
+    margin-top: 20px;
+}
+
+
+#login_prompt .close_btn {
+    background-image: url("res/close_btn_s.png");
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 32px;
+    height: 32px;
+}
+
+
+#login_prompt .close_btn:hover {
+    cursor: pointer;
+}
+
+
+#login_prompt form {
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    text-align: left;
+}
+
+
+#login_prompt form input[type="text"], input[type="password"] {
+    width: 100%;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+
+#login_prompt form input[type="submit"] {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #c5c5c5;
+    height: 35px;
+    border: none;
+    border-radius: 8px;
+}
+
+
+#login_prompt form input[type="submit"]:hover {
+    background-color: #b0b0b0;
+    cursor: pointer;
+}
+
+
+#login_prompt #login_section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: auto;
+}
+
+
+#login_prompt #signup_section {
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: relative;
+    flex-direction: column;
+    overflow: auto;
+}
+
+
+/* Account management divisor styling */
+#account_management {
+    display: none;
+    overflow: hidden;
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    width: 125px;
+    height: 100px;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: white;
+    text-align: center;
+}
+
+
+#account_management button {
+    width: 100%;
+    height: 50%;
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+}
+
+
+#account_management button:hover {
+    background-color: #d5d5d5;
+    cursor: pointer;
 }

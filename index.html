@@ -1,35 +1,149 @@
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Buy and sell used books at Bookworm</title>
         <link rel="stylesheet" href="style.css">
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
         <script src="main.js"></script>
     </head>
 
     <body>
-        <!-- All the header contents that are used in header -->
-        <header>
-            <div class="hdr_element">
-                <img alt="LOGO" src="res/logo.svg">
-            </div>
-            <div class="hdr_element">
-                <button class="big_button" type="button">About Us</button>
-                <button class="big_button" type="button">Browse</button>
-                <button class="big_button" type="button">Sell</button>
-                <div class="big_icon" id="usr" onclick="prompt_login()"></div>
-            </div>
-        </header>
+        <main id="main">
+            <!-- All the header contents that are used in header -->
+            <header>
+                <div class="hdr_element">
+                    <a href="javascript:ShowBookSearch()">
+                        <img alt="LOGO" src="res/bookworm_logo.png">
+                    </a>
+                </div>
+                <div class="hdr_element">
+                    <button class="big_button" type="button">About Us</button>
+                    <button class="big_button" type="button">Browse</button>
+                    <button class="big_button" type="button">Sell</button>
+                    <div class="big_icon" id="usr" onclick="UserInfoHandler()"></div>
+                </div>
+            </header>
 
-        <!-- Main search page div -->
-        <div class="search_page">
-            <form>
-                <input type="text" placeholder="Search for books"</input>
-                <button type="button" class="big_button">Search</button>
-            </form>
+            <!-- Main search page div -->
+            <div class="content">
+                <!-- Search form that is apparent in so called index site --> 
+                <form id="search" style="display:none">
+                    <input type="text" placeholder="Search for books"</input>
+                    <button type="button" class="big_button">Search</button>
+                </form>
+
+                <!-- User profile viewing -->
+                <div id="user_profile">
+                    <h1>User profile</h1>
+
+                    <!-- Table for containing all information related to the user -->
+                    <table>
+                        <tr>
+                            <th>Username: </th>
+                            <td id="uname"></td>
+                            <td><button class="big_button">Change</button></td>
+                        </tr>
+                        <tr>
+                            <th>Email: </th>
+                            <td id="email"></td>
+                            <td><button class="big_button">Change</button></td>
+                        </tr>
+                        <tr>
+                            <th>First name: </th>
+                            <td id="fname"></td>
+                            <td><button class="big_button">Change</button></td>
+                        </tr>
+                        <tr>
+                            <th>Last name: </th>
+                            <td id="lname"></td>
+                            <td><button class="big_button">Change</button></td>
+                        </tr>
+                        <tr>
+                            <th>Password: </th>
+                            <td id="password"></td>
+                            <td><button class="big_button">Change</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+            <!-- Contact info footer section -->
+            <footer>
+                <div class="contact_info">
+                    <b>Contact us:</b>
+                    <p>Email: support@bookworm.ee</p>
+                    <p>Phone: +372 6666 7777</p>
+                </div>
+
+                <div class="social_media">
+                    <a href="https://www.instagram.com/">
+                        <img src="res/ig.png" alt="Instagram">
+                    </a>
+                    <a href="https://www.facebook.com/">
+                        <img src="res/fb.png" alt="Facebook">
+                    </a>
+                </div>
+            </footer>
+        </main>
+
+        <!-- Log in prompt div -->
+        <div id="login_prompt">
+            <!-- Section for logging in to existing account -->
+            <div id="login_section">
+                <div class="close_btn" onclick="ToggleLoginPrompt()"></div>
+                <h1>Login</h1>
+
+                <p class="err_msg" id="login_err"></p>
+                <!-- Login credential information -->
+                <form id="login">
+                    <label for="login_email">Email: </label><br>
+                    <input type="text" id="login_email" name="login_email"><br>
+                    <label for="login_password">Password: </label><br>
+                    <input type="password" id="login_pass" name="login_pass"><br>
+                    <input type="submit" id="submit" value="Login" onclick="LoginToBookworm()">
+                </form>
+
+                <a href="javascript:ToggleLoginSections()">Sign up instead</a>
+            </div>
+
+            <!-- Section for signing up for a new account -->
+            <div id="signup_section">
+                <div class="close_btn" onclick="ToggleLoginPrompt()"></div>
+                <h1>Sign up</h1>
+
+                <p class="err_msg" id="signup_err"></p>
+                <!-- Login credential information -->
+                <form id="signup">
+                    <label for="signup_email">Email: </label><br>
+                    <input type="text" id="signup_email" name="signup_email"><br>
+                    <label for="uname">User name: </label><br>
+                    <input type="text" id="signup_uname" name="signup_uname"><br>
+                    <label for="fname">First name: </label><br>
+                    <input type="text" id="signup_fname" name="signup_fname"><br>
+                    <label for="signup_lname">Last name: </label><br>
+                    <input type="text" id="signup_lname" name="signup_lname"><br>
+                    <label for="signup_pass">Password: </label><br>
+                    <input type="password" id="signup_pass" name="signup_pass"><br>
+                    <label for="signup_cpass">Confirm password: </label><br>
+                    <input type="password" id="signup_cpass" name="signup_cpass"><br>
+                    <input type="submit" id="submit" value="Sign up" onclick="SignUpToBookworm()">
+                </form>
+
+                <a href="javascript:ToggleLoginSections()">Login instead</a>
+            </div>
         </div>
 
-        <!-- Login prompt that is only shown when requested explicitly --> 
-        <!--<div id="login_prompt">-->
-        <!--</div>-->
+        <!-- Small prompt for managing account and signing out -->
+        <div id="account_management">
+            <button onclick="ShowUserProfile()">My account</button>
+            <button onclick="SignOutFromBookworm()">Sign out</button>
+        </div>
+
+        <script>Bootstrap()</script>
+        <script>PreventRefreshOnSubmit()</script>
     </body>
 </html>
