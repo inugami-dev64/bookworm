@@ -8,6 +8,7 @@
         <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-storage.js"></script>
         <script src="main.js"></script>
     </head>
 
@@ -21,53 +22,161 @@
                     </a>
                 </div>
                 <div class="hdr_element">
-                    <button class="big_button" type="button">About Us</button>
-                    <button class="big_button" type="button">Browse</button>
-                    <button class="big_button" type="button">Sell</button>
+                    <button class="big_button" type="button" onclick="ShowAboutUs()">About Us</button>
+                    <button class="big_button" type="button" onclick="ShowBookCatalog()">Browse</button>
+                    <button class="big_button" type="button" onclick="ShowSellPage()">Sell</button>
                     <div class="big_icon" id="usr" onclick="UserInfoHandler()"></div>
                 </div>
             </header>
 
             <!-- Main search page div -->
             <div class="content">
-                <!-- Search form that is apparent in so called index site --> 
-                <form id="search" style="display:none">
-                    <input type="text" placeholder="Search for books"</input>
-                    <button type="button" class="big_button">Search</button>
-                </form>
+                <div id="search_page">
+                    <!-- Search form that is apparent in so called index site --> 
+                    <div id="search">
+                        <form>
+                            <input type="text" placeholder="Search for books"</input>
+                            <button type="button" class="big_button">Search</button>
+                        </form>
+                    </div>
+
+                    <!-- Information section about Bookworm -->
+                    <div class="info_section">
+                        <div class="res">
+                            <img src="res/books.jpg">
+                        </div>
+
+                        <div class="text">
+                            <h2>Buy and sell your old books!</h2>
+                            <p>
+                                Bookworm’s website helps you to sell your old books really easily. Our 
+                                platform is fast and simple for everyone to use. You only have to click 
+                                on the “SELL” button on the top right and insert book’s name and it’s price. 
+                                You’ll have to add a picture too. We hope you have an amazing experience using 
+                                our website and happy reading!
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <!-- About us -->
+                    <div class="info_section" id="about_us">
+                        <div class="res">
+                            <img src="res/ttg.png">
+                        </div>
+
+                        <div class="text">
+                            <h2>About us</h2>
+                            <p>
+                                Bookworm is a small company from Estonia, which was founded by two students,
+                                who both study at Tallinna Tehnikagümnaasium. Our goal is to provide people a 
+                                simple platform for buying and selling used books and literature.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- User profile viewing -->
                 <div id="user_profile">
                     <h1>User profile</h1>
+                    <p class="err_msg" id="user_pr_err"></p>
 
                     <!-- Table for containing all information related to the user -->
                     <table>
                         <tr>
                             <th>Username: </th>
                             <td id="uname"></td>
-                            <td><button class="big_button">Change</button></td>
+                            <td><button class="big_button" id="uname_ch" onclick="ToggleUserInfoChange('uname')">Change</button></td>
                         </tr>
                         <tr>
                             <th>Email: </th>
                             <td id="email"></td>
-                            <td><button class="big_button">Change</button></td>
+                            <td><button class="big_button" id="email_ch" onclick="ToggleUserInfoChange('email')">Change</button></td>
                         </tr>
                         <tr>
                             <th>First name: </th>
                             <td id="fname"></td>
-                            <td><button class="big_button">Change</button></td>
+                            <td><button class="big_button" id="fname_ch" onclick="ToggleUserInfoChange('fname')">Change</button></td>
                         </tr>
                         <tr>
                             <th>Last name: </th>
                             <td id="lname"></td>
-                            <td><button class="big_button">Change</button></td>
-                        </tr>
-                        <tr>
-                            <th>Password: </th>
-                            <td id="password"></td>
-                            <td><button class="big_button">Change</button></td>
+                            <td><button class="big_button" id="lname_ch" onclick="ToggleUserInfoChange('lname')">Change</button></td>
                         </tr>
                     </table>
+                </div>
+                
+
+                <!-- Catalog for all books for sale -->
+                <div id="catalog">
+                    <!-- Recently viewed books section -->
+                    <div id="recent" class="container">
+                        <h1>Recent: </h1>
+                        <div class="larrow"></div>
+                        <div class="rarrow"></div>
+
+                        <!-- Not working right now -->
+                        <div id="recent_list" class="expandable_listings">
+                            <p>Not available</p>
+                        </div>
+                    </div>
+
+                    <!-- Most popular books section -->
+                    <div id="popular" class="container">
+                        <h1>Popular: </h1>
+                        <div class="larrow"></div>
+                        <div class="rarrow"></div>
+
+                        <div id="popular_list" class="expandable_listings">
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Book information section -->
+                <div class="container" id="book_info">
+                    <div class="inner_book_info">
+                        <div class="res">
+                            <img id="book_info_attach" src="">
+                        </div>
+
+                        <div class="text">
+                            <h1 id="book_info_name"></h1>
+                            <h1 id="book_info_price"></h1>
+                            <b>Author:</b>
+                            <p id="book_info_author"></p>
+                            <b>Seller:</b>
+                            <p id="book_info_seller"></p>
+                            <b>Description:</b>
+                            <p id="book_info_desc"></p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Sale form divisor -->
+                <div class="container" id="sale_form" style="height:500px">
+                    <h1>Sell your book</h1>
+                    <p class="err_msg" id="sale_err"></p>
+                    <div class="sale_info">
+                        <div class="attachment" onclick="TriggerFileInput()">
+                            <input type="file" id="img_attachment" style="width: 0; height: 0; overflow: hidden; display: none">
+                            <img src="res/camera.png" alt="Camera">
+                            <p id="attachment_msg">Click to add image</p>
+                        </div>
+
+                        <form style="width:45%">
+                            <label for="sale_book_name">Enter book name</label><br>
+                            <input type="text" id="sale_book_name" name="sale_book_name" style="width:100%"><br><br>
+                            <label for="sale_book_price">Enter book price (€):</label><br>
+                            <input type="text" id="sale_book_price" name="sale_book_price" style="width:100%"><br><br>
+                            <label for="sale_book_author">Enter book author: </label><br>
+                            <input type="text" id="sale_book_author" name="sale_book_author" style="width:100%"><br><br>
+                            <label for="sale_book_desc">Enter book description: </label><br>
+                            <textarea id="sale_book_desc" name="sale_book_desc" rows="4" style="width:100%"></textarea><br><br>
+                            <input type="button" value="Create new listing" class="big_button" onclick="CreateNewListing()" style="width:100%;background-color:#d4d4d4">
+                        </form>
+                    </div>
                 </div>
             </div>
 

@@ -1,3 +1,3 @@
 # Bookworm
 
-All the frontend source code for Bookworm e-commerce site.
+Bookworm e-commerce site front-end source code
