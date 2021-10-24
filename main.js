@@ -582,3 +582,29 @@ function TriggerFileInput() {
         fr.readAsDataURL(file);
     };
 }
+
+
+/// Scroll expandable listings to right
+function ScrollRight(id) {
+    let dom = document.getElementById(id);
+    let visible_width = dom.clientWidth;
+    let width = dom.scrollWidth;
+    let scroll_left = dom.scrollLeft;
+
+    if(scroll_left + (visible_width / 2) <= width)
+        dom.scroll({left: scroll_left + (visible_width / 2), top: 0, behavior: 'smooth'});
+    else dom.scroll({left: width, top: 0, behavior: 'smooth'})
+}
+
+
+/// Scroll expandable listings to left
+function ScrollLeft(id) {
+    let dom = document.getElementById(id);
+    let visible_width = dom.clientWidth;
+    let width = dom.scrollWidth;
+    let scroll_left = dom.scrollLeft;
+
+    if(scroll_left - (visible_width / 2) >= 0)
+        dom.scroll({left: scroll_left - (visible_width / 2), top: 0, behavior: 'smooth'});
+    else dom.scroll({left: 0, top: 0, behavior: 'smooth'});
+}

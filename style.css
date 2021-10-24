@@ -308,20 +308,24 @@ footer .social_media a {
 
 .content #catalog .container .expandable_listings {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     width: calc(100% - 150px);
     height: calc(100% - 100px);
     margin-left: 75px;
     margin-right: 75px;
-    overflow-x: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 
 .content #catalog .container .expandable_listings .book {
     display: block;
+    flex-grow: 0;
+    min-width: 200px;
     width: 200px;
     height: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
     background-color: #d9d9d9;
     border-radius: 10px;
     text-align: center;
@@ -536,8 +540,6 @@ footer .social_media a {
 
 
 /* Book information section styling */
-
-
 #book_info {
     display: none;
     height: 80%;
@@ -591,6 +593,11 @@ footer .social_media a {
 .inner_book_info .text p, b {
     color: black;
     user-select: text;
+}
+
+
+#book_info_desc {
+    white-space: pre-wrap;
 }
 
 

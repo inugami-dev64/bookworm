@@ -124,8 +124,8 @@
                     <!-- Most popular books section -->
                     <div id="popular" class="container">
                         <h1>Popular: </h1>
-                        <div class="larrow"></div>
-                        <div class="rarrow"></div>
+                        <div class="larrow" onclick="ScrollLeft('popular_list')"></div>
+                        <div class="rarrow" onclick="ScrollRight('popular_list')"></div>
 
                         <div id="popular_list" class="expandable_listings">
                         </div>
@@ -135,6 +135,7 @@
 
                 <!-- Book information section -->
                 <div class="container" id="book_info">
+                    <a href="javascript:ShowBookCatalog()" style="position:absolute; top:10px; left:10px">Back</a>
                     <div class="inner_book_info">
                         <div class="res">
                             <img id="book_info_attach" src="">
