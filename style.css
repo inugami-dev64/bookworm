@@ -155,6 +155,23 @@ footer .social_media a {
 }
 
 
+/* Cart icon */
+#cart {
+    width: 37px;
+    height: 34px;
+    margin: 0 5px;
+    background-image: url(res/cart.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+#cart:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 40%);
+}
+
+
 /* User icon */
 #usr {
     background-image: url(res/usr.png);
@@ -199,6 +216,20 @@ footer .social_media a {
 }
 
 
+/* View all books link */
+.content #search a {
+    margin-top: 10px;
+    font-weight: 900;
+    text-decoration: none;
+    color: #0066ff;
+}
+
+
+.content #search a:hover {
+    color: #33ccff;
+}
+
+
 /* Split info section styling */
 .content .info_section {
     display: flex;
@@ -215,6 +246,167 @@ footer .social_media a {
 }
 
 
+/* list divisor styling */
+.list {
+    width: 100%;
+    height: auto;
+    overflow: none;
+}
+
+
+.list ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    list-style-type: none;
+}
+
+
+.list ul li .item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-top: 20px;
+    /*min-width: 600px;*/
+    min-height: 100px;
+    background-color: #eaeaea;
+    border-radius: 10px;
+}
+
+
+.list .item .book_info {
+    text-align: center;
+}
+
+.list .item .book_info h1 {
+    font-size: 24px;
+    word-wrap: break-word;
+}
+
+
+.list .item .book_info p {
+    margin-top: -10px;
+    color: black;
+    word-wrap: break-word;
+}
+
+
+.list .item img {
+    margin: 10px;
+    max-height: 128px;
+}
+
+
+.round_btn {
+    width: 90px;
+    height: 33px;
+    border-radius: 30px;
+    color: white;
+    border: none;
+    margin-right: 30px;
+    background-color: #c89057;
+}
+
+
+.round_btn:hover {
+    background-color: #cf975d;
+    cursor: pointer;
+}
+
+
+/* Cart contents */
+.cart_contents {
+    display: none;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    width: 80%;
+    height: 60%;
+    min-height: 500px;
+    background-color: #eaeaea;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+
+.cart_contents .cart_books {
+    width: 50%;
+    height: 100%;
+    overflow: auto;
+}
+
+
+.cart_contents .cart_books .cart_book {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 50px;
+    margin-left: 30px;
+    width: 80%;
+    height: 120px;
+    padding-top: 20px;
+    border-top: solid #c4c4c4;
+}
+
+
+.cart_contents .cart_books .cart_book h2, p {
+    color: black;
+}
+
+
+.cart_contents .cart_books .cart_book h2 {
+    font-size: 18px;
+}
+
+
+.cart_contents .cart_books .cart_book img {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+}
+
+
+.cart_contents .cart_price {
+    margin-top: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    width: 40%;
+    height: 70%;
+    background-color: #dddddd;
+}
+
+
+.cart_contents .cart_price .price_data {
+    margin: 10px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: solid #c4c4c4;
+}
+
+
+.cart_contents .cart_price .price_data .data_pair {
+    display: flex;
+    margin: 0 20px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.cart_contents .cart_price .round_btn {
+    position: absolute;
+    right: 10px;
+    margin-top: 20px;
+}
+
+
 .res {
     display: flex;
     flex-direction: row;
@@ -223,6 +415,7 @@ footer .social_media a {
     width: 50%;
     height: 100%;
 }
+
 
 .content .info_section .res img {
     display: block;

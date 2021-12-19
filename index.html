@@ -9,7 +9,9 @@
         <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-storage.js"></script>
-        <script src="main.js"></script>
+        <script src="src/Globals.js"></script>
+        <script src="src/ContentViewer.js"></script>
+        <script src="src/UserAccountControl.js"></script>
     </head>
 
     <body>
@@ -17,7 +19,7 @@
             <!-- All the header contents that are used in header -->
             <header>
                 <div class="hdr_element">
-                    <a href="javascript:ShowBookSearch()">
+                    <a href="./index.html">
                         <img alt="LOGO" src="res/bookworm_logo.png">
                     </a>
                 </div>
@@ -25,6 +27,7 @@
                     <button class="big_button" type="button" onclick="ShowAboutUs()">About Us</button>
                     <button class="big_button" type="button" onclick="ShowBookCatalog()">Browse</button>
                     <button class="big_button" type="button" onclick="ShowSellPage()">Sell</button>
+                    <div class="big_icon" id="cart" onclick="ToggleCart()"></div>
                     <div class="big_icon" id="usr" onclick="UserInfoHandler()"></div>
                 </div>
             </header>
@@ -38,6 +41,7 @@
                             <input type="text" placeholder="Search for books"</input>
                             <button type="button" class="big_button">Search</button>
                         </form>
+                        <a href="javascript:ShowBookList()">View all books</a>
                     </div>
 
                     <!-- Information section about Bookworm -->
@@ -75,6 +79,14 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Book list div -->
+                <div class="list" id="list">
+                    <ul id="books"> 
+                        <!-- Insert all book titles here -->
+                    </ul>
+                </div>
+
 
                 <!-- User profile viewing -->
                 <div id="user_profile">
@@ -146,11 +158,13 @@
                             <h1 id="book_info_price"></h1>
                             <b>Author:</b>
                             <p id="book_info_author"></p>
-                            <b>Seller:</b>
-                            <p id="book_info_seller"></p>
+                            <b>Seller:</b><br>
+                            <a id="book_info_seller"></a><br>
                             <b>Description:</b>
                             <p id="book_info_desc"></p>
                         </div>
+
+                        <button class="round_btn" id="detailed_add_to_cart" onclick="AddToCart()">Add to cart</button>
                     </div>
                 </div>
 
@@ -200,6 +214,48 @@
                 </div>
             </footer>
         </main>
+
+        <!-- Cart view div -->
+        <div class="cart_contents" id="cart_contents">
+            <!-- All books that are in cart -->
+            <div class="cart_books" id="books_in_cart">
+                <div class="cart_book">
+                    <img src="res/books/algorithms.jpg">
+
+                    <div class="book_info">
+                        <h2>Name</h2>
+                        <p>Seller</p>
+                    </div>
+
+                    <p style="margin-top: auto;">Price</p>
+                </div>
+            </div>
+
+            <!-- Price contents -->
+            <div class="cart_price">
+                <!-- Order price and tax price -->
+                <div class="price_data">
+                    <div class="data_pair">
+                        <p>Order</p>
+                        <p id="order_price">Order price</p>
+                    </div>
+                    <div class="data_pair">
+                        <p>Tax</p>
+                        <p id="tax_price">Tax price</p>
+                    </div>
+                </div>
+
+                <!-- Total price -->
+                <div class="price_data">
+                    <div class="data_pair">
+                        <p>Total</p>
+                        <p id="total_price">Total price</p>
+                    </div>
+                </div>
+                <button class="round_btn">Confirm</button>
+            </div>
+        </div>
+
 
         <!-- Log in prompt div -->
         <div id="login_prompt">
